@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Couleur{% endblock %}
+
+{% block body %}
+    <h1>Create new Couleur</h1>
+
+    {{ include('couleur/_form.html.twig') }}
+
+    <a href="{{ path('app_couleur_index') }}">back to list</a>
+{% endblock %}

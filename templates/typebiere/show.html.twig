@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Typebiere{% endblock %}
+
+{% block body %}
+    <h1>Typebiere</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ typebiere.id }}</td>
+            </tr>
+            <tr>
+                <th>NomType</th>
+                <td>{{ typebiere.nomType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_typebiere_index') }}">back to list</a>
+
+    <a href="{{ path('app_typebiere_edit', {'id': typebiere.id}) }}">edit</a>
+
+    {{ include('typebiere/_delete_form.html.twig') }}
+{% endblock %}
