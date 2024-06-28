@@ -3,13 +3,17 @@
 {% block title %}Continent index{% endblock %}
 
 {% block body %}
-    <h1>Continent index</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+    <h1>Continents</h1>
+<a class="btn btn-primary" href="{{ path('app_continent_new') }}" role="button">Ajouter</a>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
+                <th>Continent</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,8 +23,11 @@
                 <td>{{ continent.id }}</td>
                 <td>{{ continent.nom }}</td>
                 <td>
-                    <a href="{{ path('app_continent_show', {'id': continent.id}) }}">show</a>
-                    <a href="{{ path('app_continent_edit', {'id': continent.id}) }}">edit</a>
+                <a class="btn btn-info" href="{{ path('app_continent_show', {'id': continent.id}) }}" role="button">Consulter</a>
+                <a class="btn btn-success" href="{{ path('app_continent_edit', {'id': continent.id}) }}" role="button">Modifier</a>
+                {# a faire #}
+                <a class="btn btn-danger" href="#" role="button">Supprimer</a>  
+                                
                 </td>
             </tr>
         {% else %}
@@ -31,5 +38,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_continent_new') }}">Create new</a>
+   
+
+</main>
+</section>
+</div>
 {% endblock %}

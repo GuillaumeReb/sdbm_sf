@@ -64,6 +64,12 @@ class Continent
         return $this;
     }
 
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     public function removePay(Pays $pay): static
     {
         if ($this->pays->removeElement($pay)) {
