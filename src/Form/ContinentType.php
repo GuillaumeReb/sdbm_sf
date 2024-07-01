@@ -12,7 +12,12 @@ class ContinentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
+        // ici pour modifier avec du bootstrap
+            ->add('nom', null, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Nom du Continent',
+                'label_attr' => ['class' => 'form-label']
+            ])
         ;
     }
 

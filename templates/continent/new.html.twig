@@ -1,11 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Continent{% endblock %}
+{% block title %}Ajouter un Continent{% endblock %}
 
 {% block body %}
-    <h1>Create new Continent</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Ajouter un Continent</h1>
+    <br>
+    <br>
 
     {{ include('continent/_form.html.twig') }}
 
-    <a href="{{ path('app_continent_index') }}">back to list</a>
+<br>
+
+    <a <a class="btn btn-primary me-md-2" href="{{ path('app_continent_index') }}">Retour</a>
+    <br>
+    <br>
+
+</main>
+</section>
+</div>
 {% endblock %}

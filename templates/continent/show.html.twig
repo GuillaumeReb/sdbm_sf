@@ -1,9 +1,13 @@
+{# Sert pour la suppression #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Continent{% endblock %}
 
 {% block body %}
-    <h1>Continent test</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+    <h1>Supprimer un Continent</h1>
 
     <table class="table">
         <tbody>
@@ -17,10 +21,17 @@
             </tr>
         </tbody>
     </table>
-    <a class="btn btn-primary" href="{{ path('app_continent_index') }}" role="button">Retour</a>
+    <div class="d-grid gap-2 d-md-block">
+    <a class="btn btn-primary me-md-2" href="{{ path('app_continent_index') }}" role="button">Retour</a>
     {# <a href="{{ path('app_continent_index') }}">Retour</a> #}
 
-    <a href="{{ path('app_continent_edit', {'id': continent.id}) }}">edit</a>
-
+    {# <a href="{{ path('app_continent_edit', {'id': continent.id}) }}">edit</a> #}
+     <a href="#">
     {{ include('continent/_delete_form.html.twig') }}
+    </a>
+   </div>
+
+</main>
+</section>
+</div>
 {% endblock %}
