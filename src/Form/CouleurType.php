@@ -12,7 +12,11 @@ class CouleurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomCouleur')
+            ->add('nomCouleur', null, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Nom de la couleur',
+                'label_attr' => ['class' => 'form-label']
+            ])
         ;
     }
 

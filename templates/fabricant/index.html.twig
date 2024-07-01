@@ -3,24 +3,34 @@
 {% block title %}Fabricant index{% endblock %}
 
 {% block body %}
-    <h1>Fabricant index</h1>
-
-    <table class="table">
-        <thead>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1 style="text-align:center">Gestion des Fabricants</h1>
+<br>
+ <a class="btn btn-primary" href="{{ path('app_fabricant_new') }}">Ajouter</a>
+ <br>
+<br>
+<br>
+    <table class="table table-striped table-hover table-bordered align-middle">
+        <thead class="table-warning">
             <tr>
-                <th>Id</th>
-                <th>NomFabricant</th>
-                <th>actions</th>
+                <th style="text-align:center">Id</th>
+                <th style="text-align:center">Nom du Fabricant</th>
+                <th style="text-align:center">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for fabricant in fabricants %}
             <tr>
-                <td>{{ fabricant.id }}</td>
-                <td>{{ fabricant.nomFabricant }}</td>
-                <td>
-                    <a href="{{ path('app_fabricant_show', {'id': fabricant.id}) }}">show</a>
-                    <a href="{{ path('app_fabricant_edit', {'id': fabricant.id}) }}">edit</a>
+                <td class="table-light" style="text-align:center">{{ fabricant.id }}</td>
+                <td class="table-light" style="text-align:center">{{ fabricant.nomFabricant }}</td>
+                <td class="table-light" style="text-align:center">
+                    {# <a href="{{ path('app_fabricant_show', {'id': fabricant.id}) }}">show</a> #}
+                    <a class="btn btn-success" href="{{ path('app_fabricant_edit', {'id': fabricant.id}) }}">Modifier</a>
+                    
+                    <a class="btn btn-danger" href="{{ path('app_fabricant_show', {'id': fabricant.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +40,9 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_fabricant_new') }}">Create new</a>
+</main>
+</section>
+</div>
+<br>
+   
 {% endblock %}

@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Typebiere{% endblock %}
+{% block title %}Modifier Typebiere{% endblock %}
 
 {% block body %}
-    <h1>Edit Typebiere</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Modifier un Type de biere</h1>
 
-    {{ include('typebiere/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('typebiere/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('app_typebiere_index') }}">back to list</a>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_typebiere_index') }}">Retour</a>
 
-    {{ include('typebiere/_delete_form.html.twig') }}
+    {# {{ include('typebiere/_delete_form.html.twig') }} #}
+    </main>
+</section>
+</div>
+<br>
 {% endblock %}

@@ -16,7 +16,9 @@ class PaysType extends AbstractType
     {
         $builder
             ->add('nomPays', TextType::class, [
-                'attr'=>['class'=> 'form-control']
+                'attr'=>['class'=> 'form-control'],
+                'label' => 'Nom du Pays',
+                'label_attr' => ['class' => 'form-label']
             ])
             // ->add('continents', EntityType::class, [
             //     'class' => Continent::class,

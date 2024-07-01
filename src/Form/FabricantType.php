@@ -12,7 +12,12 @@ class FabricantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomFabricant')
+        // ici pour modifier avec du bootstrap
+            ->add('nomFabricant', null, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Nom du Fabricant',
+                'label_attr' => ['class' => 'form-label']
+            ])
         ;
     }
 

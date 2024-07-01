@@ -3,24 +3,33 @@
 {% block title %}Typebiere index{% endblock %}
 
 {% block body %}
-    <h1>Types de biere index</h1>
-
-    <table class="table">
-        <thead>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1 style="text-align:center">Gestion des Types de bière</h1>
+<br>
+<a class="btn btn-primary" href="{{ path('app_typebiere_new') }}">Ajouter</a>
+<br>
+<br>
+<br>
+    <table class="table table-striped table-hover table-bordered align-middle">
+        <thead class="table-warning">
             <tr>
-                <th>Id</th>
-                <th>NomType</th>
-                <th>actions</th>
+                <th style="text-align:center">Id</th>
+                <th style="text-align:center">Nom du Type de bière</th>
+                <th style="text-align:center">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for typebiere in typebieres %}
-            <tr>
-                <td>{{ typebiere.id }}</td>
-                <td>{{ typebiere.nomType }}</td>
-                <td>
-                    <a href="{{ path('app_typebiere_show', {'id': typebiere.id}) }}">show</a>
-                    <a href="{{ path('app_typebiere_edit', {'id': typebiere.id}) }}">edit</a>
+            <tr class="table-light">
+                <td style="text-align:center">{{ typebiere.id }}</td>
+                <td style="text-align:center" >{{ typebiere.nomType }}</td>
+                <td style="text-align:center">
+                    {# <a href="{{ path('app_typebiere_show', {'id': typebiere.id}) }}">show</a> #}
+                    <a class="btn btn-success" href="{{ path('app_typebiere_edit', {'id': typebiere.id}) }}">Modifier</a>
+                    <a class="btn btn-danger" href="{{ path('app_typebiere_show', {'id': typebiere.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +39,9 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_typebiere_new') }}">Create new</a>
+</main>
+</section>
+</div>
+<br>
+    
 {% endblock %}

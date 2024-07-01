@@ -1,9 +1,14 @@
+{# Sert pour la suppression #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Fabricant{% endblock %}
 
 {% block body %}
-    <h1>Fabricant</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Supprimer un Fabricant</h1>
 
     <table class="table">
         <tbody>
@@ -12,15 +17,21 @@
                 <td>{{ fabricant.id }}</td>
             </tr>
             <tr>
-                <th>NomFabricant</th>
+                <th>Nom du Fabricant</th>
                 <td>{{ fabricant.nomFabricant }}</td>
             </tr>
         </tbody>
     </table>
+ <div class="d-grid gap-2 d-md-block">
+    <a class="btn btn-primary me-md-2" href="{{ path('app_fabricant_index') }}">Retour</a>
 
-    <a href="{{ path('app_fabricant_index') }}">back to list</a>
-
-    <a href="{{ path('app_fabricant_edit', {'id': fabricant.id}) }}">edit</a>
+    {# <a href="{{ path('app_fabricant_edit', {'id': fabricant.id}) }}">edit</a> #}
 
     {{ include('fabricant/_delete_form.html.twig') }}
+
+</div>
+
+</main>
+</section>
+</div>
 {% endblock %}

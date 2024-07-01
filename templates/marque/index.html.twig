@@ -18,6 +18,7 @@
             <tr>
                 <td>{{ marque.id }}</td>
                 <td>{{ marque.nomMarque }}</td>
+                {# <td>{{ marque.fabricants.nom_fabricant }}</td> #}
                 <td>
                     <a href="{{ path('app_marque_show', {'id': marque.id}) }}">show</a>
                     <a href="{{ path('app_marque_edit', {'id': marque.id}) }}">edit</a>

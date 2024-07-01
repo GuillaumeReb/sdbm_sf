@@ -3,11 +3,20 @@
 {% block title %}Edit Fabricant{% endblock %}
 
 {% block body %}
-    <h1>Edit Fabricant</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Modifier un Fabricant</h1>
 
-    {{ include('fabricant/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('fabricant/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('app_fabricant_index') }}">back to list</a>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_fabricant_index') }}">Retour</a>
 
-    {{ include('fabricant/_delete_form.html.twig') }}
+    {# {{ include('fabricant/_delete_form.html.twig') }} #}
+
+</main>
+</section>
+</div>
+<br>
 {% endblock %}

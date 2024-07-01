@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Typebiere{% endblock %}
+{% block title %}Ajouter Type biere{% endblock %}
 
 {% block body %}
-    <h1>Create new Typebiere</h1>
-
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Ajouter un nouveau Type de biere</h1>
+ <br>
+    <br>
     {{ include('typebiere/_form.html.twig') }}
+<br>
 
-    <a href="{{ path('app_typebiere_index') }}">back to list</a>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_typebiere_index') }}">Retour</a>
+</main>
+</section>
+</div>
 {% endblock %}

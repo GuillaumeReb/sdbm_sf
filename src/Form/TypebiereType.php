@@ -12,7 +12,11 @@ class TypebiereType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomType')
+            ->add('nomType',null, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Nom du Type de bière',
+                'label_attr' => ['class' => 'form-label']
+            ])
         ;
     }
 

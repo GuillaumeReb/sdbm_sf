@@ -3,9 +3,21 @@
 {% block title %}New Fabricant{% endblock %}
 
 {% block body %}
-    <h1>Create new Fabricant</h1>
-
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Ajouter un nouveau Fabricant</h1>
+    <br>
+    <br>
+<div class="boutons">
     {{ include('fabricant/_form.html.twig') }}
-
-    <a href="{{ path('app_fabricant_index') }}">back to list</a>
+<br>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_fabricant_index') }}">Retour</a>
+ <br>
+    <br>
+</div>
+</main>
+</section>
+</div>
 {% endblock %}
