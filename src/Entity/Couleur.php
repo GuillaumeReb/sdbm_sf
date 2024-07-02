@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CouleurRepository::class)]
+
 class Couleur
 {
     #[ORM\Id]
@@ -15,7 +16,8 @@ class Couleur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 25)]
+    //unique pour eviter la répétition des couleurs, une seule brune. penser a faire le migrate et migrate:migration
+    #[ORM\Column(length: 25, unique: true)]
     private ?string $nomCouleur = null;
 
     /**

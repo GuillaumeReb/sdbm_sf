@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
 
 class PaysType extends AbstractType
 {
@@ -24,8 +25,16 @@ class PaysType extends AbstractType
             //     'class' => Continent::class,
             //     'choice_label' => 'id',
             // ])
-            ->add('continents', null,[
-                'attr'=>['class'=> 'form-control']
+            ->add('continents', EntityType::class,[
+                'class' => Continent::class,
+                'choice_label' => 'nom',
+                'attr'=>['class'=> 'form-control'],
+                // Permet de mettre le combo en ordre alphabétique
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('continent')
+                        ->orderBy('continent.nom', 'ASC');
+                },
+                'attr' => ['class' => 'form-control']
             ])
         ;
     }

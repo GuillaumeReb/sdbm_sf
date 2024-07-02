@@ -3,22 +3,36 @@
 {% block title %}Marque index{% endblock %}
 
 {% block body %}
+{# {{ dump(marques) }} #}
     <h1>Marque index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>NomMarque</th>
+                <th>Nom Marque</th>
+                <th>Nom Pays</th>
+                <th>Nom Fabricants</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for marque in marques %}
+        {# {{ dump(marque.pays) }} #}
             <tr>
                 <td>{{ marque.id }}</td>
-                <td>{{ marque.nomMarque }}</td>
-                {# <td>{{ marque.fabricants.nom_fabricant }}</td> #}
+                <td>{{ marque.nomMarque }}</td>                
+                <td>{{ marque.pays.nomPays }}</td>
+                {# <td>{{ marque.fabricants.nomFabricant }}</td> #}
+                <td>
+                {# Code grâce a ChatGPT #}
+                {% if marque.fabricants is not null %}
+                        {{ marque.fabricants.nomFabricant }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+
+                </td>
                 <td>
                     <a href="{{ path('app_marque_show', {'id': marque.id}) }}">show</a>
                     <a href="{{ path('app_marque_edit', {'id': marque.id}) }}">edit</a>
@@ -29,6 +43,7 @@
                 <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
+    
         </tbody>
     </table>
 

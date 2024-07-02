@@ -9,9 +9,14 @@
 <br>
     <h1>Modifier une Couleur</h1>
 
-    {{ include('couleur/_form.html.twig', {'button_label': 'Valider'}) }}
+    {# {{ include('couleur/_form.html.twig', {'button_label': 'Valider'}) }} #}
 
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
     <a class="btn btn-primary me-md-2" href="{{ path('app_couleur_index') }}">Retour</a>
+    {{ form_end(form) }}    
 
     {# {{ include('couleur/_delete_form.html.twig') }} #}
 </main>

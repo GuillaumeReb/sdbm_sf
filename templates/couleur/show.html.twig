@@ -16,19 +16,25 @@
                 <td>{{ couleur.id }}</td>
             </tr>
             <tr>
-                <th>Nom Couleur</th>
+                <th>Nom la Couleur</th>
                 <td>{{ couleur.nomCouleur }}</td>
             </tr>
         </tbody>
     </table>
     <div class="d-grid gap-2 d-md-block">
-    <a class="btn btn-primary me-md-2" href="{{ path('app_couleur_index') }}">Retour</a>
+
+
+    <form method="post" action="{{ path('app_couleur_delete', {'id': couleur.id}) }}" onsubmit="return confirm('Vous êtes sûr le point de supprimer une couleur, voulez-vous continuer ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ couleur.id) }}">
+     <a class="btn btn-primary me-md-2" href="{{ path('app_couleur_index') }}">Retour</a>
+    <button class="btn btn-danger">Supprimer</button>
+    </form>   
 
     {# <a href="{{ path('app_couleur_edit', {'id': couleur.id}) }}">edit</a> #}
 
-      <a href="#">
+      {# <a href="#">
     {{ include('couleur/_delete_form.html.twig') }}
-      </a>
+      </a> #}
    </div>
 </main>
 </section>

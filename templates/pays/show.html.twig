@@ -22,11 +22,16 @@
         </tbody>
     </table>
     <div class="d-grid gap-2 d-md-block">
+
+<form method="post" action="{{ path('app_pays_delete', {'id': pay.id}) }}" onsubmit="return confirm('Vous êtes sûr le point de supprimer un pays, voulez-vous continuer ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pay.id) }}">
     <a class="btn btn-primary me-md-2" href="{{ path('app_pays_index') }}">Retour</a>
+    <button class="btn btn-danger">Supprimer</button>
+</form>  
    
     {# <a href="{{ path('app_pays_edit', {'id': pay.id}) }}">edit</a> #}
 
-    {{ include('pays/_delete_form.html.twig') }}
+    {# {{ include('pays/_delete_form.html.twig') }} #}
     </div>
 </main>
 </section>

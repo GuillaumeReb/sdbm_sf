@@ -17,6 +17,7 @@ class PaysController extends AbstractController
     #[Route('/', name: 'app_pays_index', methods: ['GET'])]
     public function index(PaysRepository $paysRepository): Response
     {
+
         return $this->render('pays/index.html.twig', [
             'pays' => $paysRepository->findAll(),
         ]);

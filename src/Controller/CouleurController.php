@@ -6,6 +6,7 @@ use App\Entity\Couleur;
 use App\Form\CouleurType;
 use App\Repository\CouleurRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,8 +31,25 @@ class CouleurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($couleur);
-            $entityManager->flush();
+
+            // ici coder les exeptions
+            try{
+                $entityManager->persist($couleur);
+                $entityManager->flush();
+                $this->addFlash('success', 'La couleur a été ajoutée avec succès.');
+
+            }catch(\Exception $e) {
+                $this->addFlash('danger', 'La couleur n\'a pas été ajoutée.');
+                // dd($e);
+                if (($e->getCode()== 1062)){
+                    if (strpos($e->getMessage(), "UNIQ_3C0D87E5C9828C2D")) {
+                        $this->addFlash('danger', 'Le nom doit êtres unique.');
+                    }
+                   
+                }
+
+            }
+            
 
             return $this->redirectToRoute('app_couleur_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -17,7 +17,7 @@
         {% block javascripts %} {% endblock %}
        <!-- <script src="{{ asset('assets/js/scripts.js') }}" defer></script> -->
 
-        <!-- liens BOOTSTRAP -->
+        <!-- liens BOOTSTRAP (a mettre avant </body>) -->
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
         crossorigin="anonymous"></script>
 
@@ -29,6 +29,14 @@
     </head>
     <body>
     {% include "_partials/_nav.html.twig" %}
+    {# Affiche les messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
         {% block body %}{% endblock %}
 

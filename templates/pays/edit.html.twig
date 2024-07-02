@@ -9,9 +9,18 @@
 <br>
     <h1>Modifier un Pays</h1>
 
-    {{ include('pays/_form.html.twig', {'button_label': 'Valider'}) }}
+    {# {{ include('pays/_form.html.twig', {'button_label': 'Valider'}) }} #}
 
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
     <a class="btn btn-primary me-md-2" href="{{ path('app_pays_index') }}">Retour</a>
+    {{ form_end(form) }}
+
+
+    
 
     {# {{ include('pays/_delete_form.html.twig') }} #}
 

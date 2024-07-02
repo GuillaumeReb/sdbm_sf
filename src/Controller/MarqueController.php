@@ -17,6 +17,8 @@ class MarqueController extends AbstractController
     #[Route('/', name: 'app_marque_index', methods: ['GET'])]
     public function index(MarqueRepository $marqueRepository): Response
     {
+        // $marques= $marqueRepository->findAll();
+        // dd($marques[0] -> getFabricants() -> getNomFabricant());
         return $this->render('marque/index.html.twig', [
             'marques' => $marqueRepository->findAll(),
         ]);
