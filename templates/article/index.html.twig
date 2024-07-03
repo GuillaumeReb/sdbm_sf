@@ -3,6 +3,7 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
+{# {{ dump(articles) }} #}
     <h1>Article indexTEST2</h1>
 
     <table class="table">
@@ -10,8 +11,9 @@
             <tr>
                 <th>Id</th>
                 <th>Nom Article</th>
-                <th></th>
-                <th></th>
+                <th>Type</th>
+                <th>Marque</th>
+                <th>Couleur</th>
                 <th>Prix Achat</th>
                 <th>Volume</th>
                 <th>Titrage</th>
@@ -23,9 +25,25 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.nomArticle }}</td>
+                <td>
+                 {% if article.types is not null %}
+                    {{ article.types.nomType}}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                 <td>{{ article.marques.nomMarque}}</td>
+                 <td>
+                {% if article.couleurs is not null %}
+                    {{ article.couleurs.nomCouleur}}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>               
                 <td>{{ article.prixAchat }}</td>
                 <td>{{ article.volume }}</td>
                 <td>{{ article.titrage }}</td>
+               
                 <td>
                     <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
                     <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
