@@ -30,8 +30,26 @@ class TypebiereController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($typebiere);
-            $entityManager->flush();
+
+            // ici coder les exeptions
+            try{
+                $entityManager->persist($typebiere);
+                $entityManager->flush();
+                $this->addFlash('success', 'Le type de bière a été ajouté avec succès.');
+
+            }catch(\Exception $e){
+                $this->addFlash('danger', 'La couleur n\'a pas été ajoutée.');
+                // dd($e); 
+                // Aide as trouver le code erreur UNIQ_.......
+                if (($e->getCode()== 1062)){
+                    if (strpos($e->getMessage(), "UNIQ_871959C27E0E9D47")) {
+                        $this->addFlash('danger', 'Le nom doit êtres unique.');
+                    }
+                   
+                }
+
+            }
+           
 
             return $this->redirectToRoute('app_typebiere_index', [], Response::HTTP_SEE_OTHER);
         }

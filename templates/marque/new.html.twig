@@ -1,11 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Marque{% endblock %}
+{% block title %}Ajouter une Marque{% endblock %}
 
 {% block body %}
-    <h1>Create new Marque</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Ajouter une Marque</h1>
+<br>
+    <br>
+    {# {{ include('marque/_form.html.twig') }} #}
 
-    {{ include('marque/_form.html.twig') }}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_marque_index') }}">Retour</a>
+{{ form_end(form) }}
 
-    <a href="{{ path('app_marque_index') }}">back to list</a>
+ <br>
+</main>
+</section>
+</div>
+<br>
+
+    
 {% endblock %}

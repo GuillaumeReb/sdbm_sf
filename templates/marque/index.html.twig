@@ -3,12 +3,21 @@
 {% block title %}Marque index{% endblock %}
 
 {% block body %}
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
 {# {{ dump(marques) }} #}
-    <h1>Marque index</h1>
+    <h1>Gestion des marques</h1>
+<br>
 
-    <table class="table">
-        <thead>
-            <tr>
+<a class="btn btn-primary me-md-2" href="{{ path('app_marque_new') }}">Ajouter</a>
+<br>
+<br>
+<br>
+    <table class="table table-striped table-hover table-bordered align-middle">
+        <thead class="table-warning">
+            <tr style="text-align:center">
                 <th>Id</th>
                 <th>Nom Marque</th>
                 <th>Nom Pays</th>
@@ -19,12 +28,13 @@
         <tbody>
         {% for marque in marques %}
         {# {{ dump(marque.pays) }} #}
-            <tr>
-                <td>{{ marque.id }}</td>
-                <td>{{ marque.nomMarque }}</td>                
-                <td>{{ marque.pays.nomPays }}</td>
+        {# {{ dump(marque.fabricants.id) }} #}
+            <tr class="table-light">
+                <td style="text-align:center">{{ marque.id }}</td>
+                <td style="text-align:center">{{ marque.nomMarque }}</td>                
+                <td style="text-align:center">{{ marque.pays.nomPays }}</td>
                 {# <td>{{ marque.fabricants.nomFabricant }}</td> #}
-                <td>
+                <td style="text-align:center">
                 {# Code grâce a ChatGPT #}
                 {% if marque.fabricants is not null %}
                         {{ marque.fabricants.nomFabricant }}
@@ -33,9 +43,10 @@
                     {% endif %}
 
                 </td>
-                <td>
-                    <a href="{{ path('app_marque_show', {'id': marque.id}) }}">show</a>
-                    <a href="{{ path('app_marque_edit', {'id': marque.id}) }}">edit</a>
+                <td style="text-align:center">
+                    
+                    <a class="btn btn-success" href="{{ path('app_marque_edit', {'id': marque.id}) }}">Modifier</a>
+                    <a class="btn btn-danger" href="{{ path('app_marque_show', {'id': marque.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
@@ -46,6 +57,10 @@
     
         </tbody>
     </table>
+</main>
+</section>
+</div>
+<br>
 
-    <a href="{{ path('app_marque_new') }}">Create new</a>
+    
 {% endblock %}

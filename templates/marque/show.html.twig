@@ -3,7 +3,11 @@
 {% block title %}Marque{% endblock %}
 
 {% block body %}
-    <h1>Marque</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Supprimer une Marque</h1>
 
     <table class="table">
         <tbody>
@@ -12,15 +16,26 @@
                 <td>{{ marque.id }}</td>
             </tr>
             <tr>
-                <th>NomMarque</th>
+                <th>Nom de la Marque</th>
                 <td>{{ marque.nomMarque }}</td>
             </tr>
         </tbody>
     </table>
+    <div class="d-grid gap-2 d-md-block">
+    <form method="post" action="{{ path('app_marque_delete', {'id': marque.id}) }}" onsubmit="return confirm('Vous êtes sûr le point de supprimer une marque, voulez-vous continuer ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ marque.id) }}">
+    <a class="btn btn-primary me-md-2" href="{{ path('app_marque_index') }}">Retour</a>
+    <button class="btn btn-danger">Supprimer</button>
+    </form>
+   
 
-    <a href="{{ path('app_marque_index') }}">back to list</a>
+    {# <a href="{{ path('app_marque_edit', {'id': marque.id}) }}">edit</a> #}
 
-    <a href="{{ path('app_marque_edit', {'id': marque.id}) }}">edit</a>
+    {# {{ include('marque/_delete_form.html.twig') }} #}
 
-    {{ include('marque/_delete_form.html.twig') }}
+    </div>
+</main>
+</section>
+</div>
+<br>
 {% endblock %}

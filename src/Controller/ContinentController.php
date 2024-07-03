@@ -30,8 +30,27 @@ class ContinentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($continent);
-            $entityManager->flush();
+
+             // ici coder les exeptions
+            try{
+                $entityManager->persist($continent);
+                $entityManager->flush();
+                $this->addFlash('success', 'Le continent a été ajouté avec succès.');
+
+            }catch(\Exception $e){
+                $this->addFlash('danger', 'Le continent n\'a pas été ajouté.');
+                // dd($e); 
+                // Aide as trouver le code erreur UNIQ_.......
+                if (($e->getCode()== 1062)){
+                    if (strpos($e->getMessage(), "UNIQ_6CC70C7C6C6E55B5")) {
+                        $this->addFlash('danger', 'Le nom doit êtres unique.');
+                    }
+                   
+                }
+
+            }
+
+            
 
             return $this->redirectToRoute('app_continent_index', [], Response::HTTP_SEE_OTHER);
         }

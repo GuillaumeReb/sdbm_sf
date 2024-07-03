@@ -40,7 +40,7 @@ class CouleurController extends AbstractController
 
             }catch(\Exception $e) {
                 $this->addFlash('danger', 'La couleur n\'a pas été ajoutée.');
-                // dd($e);
+                // dd($e); Aide as trouver le code erreur UNIQ_.......
                 if (($e->getCode()== 1062)){
                     if (strpos($e->getMessage(), "UNIQ_3C0D87E5C9828C2D")) {
                         $this->addFlash('danger', 'Le nom doit êtres unique.');

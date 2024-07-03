@@ -22,7 +22,7 @@ class Marque
     private ?Pays $pays = null;
 
     #[ORM\ManyToOne(inversedBy: 'marques')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Fabricant $fabricants = null;
 
     /**

@@ -30,8 +30,26 @@ class FabricantController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($fabricant);
-            $entityManager->flush();
+
+            // ici coder les exeptions
+            try{
+                $entityManager->persist($fabricant);
+                $entityManager->flush();
+                $this->addFlash('success', 'Le fabricant a été ajouté avec succès.');
+
+            }catch(\Exception $e){
+                $this->addFlash('danger', 'Le fabricant n\'a pas été ajouté.');
+                // dd($e); 
+                // Aide as trouver le code erreur UNIQ_.......
+                if (($e->getCode()== 1062)){
+                    if (strpos($e->getMessage(), "UNIQ_D740A26943B1D328")) {
+                        $this->addFlash('danger', 'Le nom doit êtres unique.');
+                    }
+                   
+                }
+
+            }
+            
 
             return $this->redirectToRoute('app_fabricant_index', [], Response::HTTP_SEE_OTHER);
         }

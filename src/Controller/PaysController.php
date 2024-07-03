@@ -31,8 +31,25 @@ class PaysController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($pay);
-            $entityManager->flush();
+
+             // ici coder les exeptions
+             try{
+                $entityManager->persist($pay);
+                $entityManager->flush();
+                $this->addFlash('success', 'Le pays a été ajoutée avec succès.');
+
+             }catch(\Exception $e){
+                $this->addFlash('danger', 'Le pays n\'a pas été ajoutée.');
+                // dd($e); Aide as trouver le code erreur UNIQ_.......
+                if (($e->getCode()== 1062)){
+                    if (strpos($e->getMessage(), "UNIQ_349F3CAEC64FF6C0")) {
+                        $this->addFlash('danger', 'Le nom doit êtres unique.');
+                    }
+                   
+                }
+             }
+
+           
 
             return $this->redirectToRoute('app_pays_index', [], Response::HTTP_SEE_OTHER);
         }

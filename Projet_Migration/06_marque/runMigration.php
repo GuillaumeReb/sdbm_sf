@@ -21,9 +21,9 @@ function migrer_une_table($migratUneTable, $SOURCE, $DESTINATION)
     if (!$SOURCE->query($sql)) echo "Pb d'accès aux {$migratUneTable["source"][0]}";
     else {
         // Vider la table de destination
-        $truncateQuery = "TRUNCATE  {$migratUneTable["destination"][0]} ";
-        echo "<br/>On vide la table {$migratUneTable['destination'][0]} <br/>";
-        $DESTINATION->query($truncateQuery);
+        // $truncateQuery = "TRUNCATE  {$migratUneTable["destination"][0]} ";
+        // echo "<br/>On vide la table {$migratUneTable['destination'][0]} <br/>";
+        // $DESTINATION->query($truncateQuery);
         // On va maintenant la remplir
         print_r($SOURCE->query($sql));
         echo "<table border='2px'>";

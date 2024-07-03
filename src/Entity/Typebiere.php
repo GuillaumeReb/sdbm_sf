@@ -15,7 +15,9 @@ class Typebiere
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 25)]
+    //unique pour eviter la répétition des Type de biere. penser a faire le 'symfony console make:migration' 
+    //et 'symfony console doctrine:migrations:migrate'
+    #[ORM\Column(length: 25, unique:true)]
     private ?string $nomType = null;
 
     /**

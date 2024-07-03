@@ -16,7 +16,8 @@ class Couleur
     #[ORM\Column]
     private ?int $id = null;
 
-    //unique pour eviter la répétition des couleurs, une seule brune. penser a faire le migrate et migrate:migration
+    //unique pour eviter la répétition des couleurs, une seule brune. penser a faire le 'symfony console make:migration' 
+    //et 'symfony console doctrine:migrations:migrate'
     #[ORM\Column(length: 25, unique: true)]
     private ?string $nomCouleur = null;
 

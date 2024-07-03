@@ -15,7 +15,9 @@ class Fabricant
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 40)]
+    //unique pour eviter la répétition des fabricants. penser a faire le 'symfony console make:migration' 
+    //et 'symfony console doctrine:migrations:migrate'
+    #[ORM\Column(length: 40, unique: true)]
     private ?string $nomFabricant = null;
 
     /**
