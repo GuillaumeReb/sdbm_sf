@@ -4,44 +4,45 @@
 
 {% block body %}
 <main class="container">
-<section class="row">
-<div class="col-12">
-<br>
-    <h1 style="text-align:center">Gestion des Types de bière</h1>
-<br>
-<a class="btn btn-primary" href="{{ path('app_typebiere_new') }}">Ajouter</a>
-<br>
-<br>
-<br>
-    <table class="table table-striped table-hover table-bordered align-middle">
-        <thead class="table-warning">
-            <tr>
-                <th style="text-align:center">Id</th>
-                <th style="text-align:center">Nom du Type de bière</th>
-                <th style="text-align:center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for typebiere in typebieres %}
-            <tr class="table-light">
-                <td style="text-align:center">{{ typebiere.id }}</td>
-                <td style="text-align:center" >{{ typebiere.nomType }}</td>
-                <td style="text-align:center">
-                    {# <a href="{{ path('app_typebiere_show', {'id': typebiere.id}) }}">show</a> #}
-                    <a class="btn btn-success" href="{{ path('app_typebiere_edit', {'id': typebiere.id}) }}">Modifier</a>
-                    <a class="btn btn-danger" href="{{ path('app_typebiere_show', {'id': typebiere.id}) }}">Supprimer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <section class="row">
+        <div class="col-12">
+            <br>
+            <h1 style="text-align:center">Gestion des Types de bière</h1>
+            <br>
+            <a class="btn btn-primary" href="{{ path('app_typebiere_new') }}">Ajouter</a>
+            <br>
+            <br>
+            <table class="table table-striped table-hover table-bordered align-middle">
+                <thead class="table-warning">
+                    <tr>
+                        <th style="text-align:center">Id</th>
+                        <th style="text-align:center">Nom du Type de bière</th>
+                        <th style="text-align:center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for typebiere in pagination.items %}
+                        <tr class="table-light">
+                            <td style="text-align:center">{{ typebiere.id }}</td>
+                            <td style="text-align:center">{{ typebiere.nomType }}</td>
+                            <td style="text-align:center">
+                                <a class="btn btn-success" href="{{ path('app_typebiere_edit', {'id': typebiere.id}) }}">Modifier</a>
+                                <a class="btn btn-danger" href="{{ path('app_typebiere_show', {'id': typebiere.id}) }}">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">No records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center mt-4">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </section>
+    <br>
 </main>
-</section>
-</div>
-<br>
-    
 {% endblock %}
+

@@ -11,14 +11,33 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
+
 #[Route('/fabricant')]
 class FabricantController extends AbstractController
 {
     #[Route('/', name: 'app_fabricant_index', methods: ['GET'])]
-    public function index(FabricantRepository $fabricantRepository): Response
+    public function index(FabricantRepository $fabricantRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Debut pagination avec KnpPaginatorBundle
+
+        $queryBuilder = $fabricantRepository->createQueryBuilder('t');
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1), // Numéro de la page, par défaut 1
+            10 // Limite de lignes par page
+        );
+
         return $this->render('fabricant/index.html.twig', [
-            'fabricants' => $fabricantRepository->findAll(),
+            'pagination' => $pagination,
+
+
+        // Fin pagination
+
+        // return $this->render('fabricant/index.html.twig', [
+        //     'fabricants' => $fabricantRepository->findAll(),
         ]);
     }
 

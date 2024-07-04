@@ -3,11 +3,21 @@
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
+<main class="container">
+<section class="row">
+<div class="col-12">
+<br>
+    <h1>Modifier un Article</h1>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+    {# {{ include('article/_form.html.twig', {'button_label': 'Update'}) }} #}
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_article_index') }}">Retour</a>
+    {{ form_end(form) }}
 
-    {{ include('article/_delete_form.html.twig') }}
+   
+    {# {{ include('article/_delete_form.html.twig') }} #}
 {% endblock %}

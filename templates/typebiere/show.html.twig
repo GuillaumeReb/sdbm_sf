@@ -23,14 +23,21 @@
         </tbody>
     </table>
     <div class="d-grid gap-2 d-md-block">
+
+
+<form method="post" action="{{ path('app_typebiere_delete', {'id': typebiere.id}) }}" onsubmit="return confirm('Vous êtes sûr le point de supprimer un type de bière, voulez-vous continuer ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ typebiere.id) }}">
     <a class="btn btn-primary me-md-2" href="{{ path('app_typebiere_index') }}">Retour</a>
+    <button class="btn btn-danger">Supprimer</button>
+</form>
+    
 
     {# <a href="{{ path('app_typebiere_edit', {'id': typebiere.id}) }}">edit</a> #}
 
-     <a href="#">
+     {# <a href="#">
     {{ include('typebiere/_delete_form.html.twig') }}
 
-</a>
+</a> #}
    </div>
 
 </main>

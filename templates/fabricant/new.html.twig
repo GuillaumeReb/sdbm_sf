@@ -10,13 +10,17 @@
     <h1>Ajouter un nouveau Fabricant</h1>
     <br>
     <br>
-<div class="boutons">
-    {{ include('fabricant/_form.html.twig') }}
-<br>
-    <a class="btn btn-primary me-md-2" href="{{ path('app_fabricant_index') }}">Retour</a>
- <br>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
     <br>
-</div>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_fabricant_index') }}">Retour</a>
+{{ form_end(form) }}
+
+
+    {# {{ include('fabricant/_form.html.twig') }} #}
+
 </main>
 </section>
 </div>

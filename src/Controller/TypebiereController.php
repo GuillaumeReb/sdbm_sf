@@ -11,15 +11,35 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
+
 #[Route('/typebiere')]
 class TypebiereController extends AbstractController
 {
     #[Route('/', name: 'app_typebiere_index', methods: ['GET'])]
-    public function index(TypebiereRepository $typebiereRepository): Response
+    public function index(TypebiereRepository $typebiereRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Debut pagination
+
+        $queryBuilder = $typebiereRepository->createQueryBuilder('t');
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1), // Numéro de la page, par défaut 1
+            10 // Limite de lignes par page
+        );
+
         return $this->render('typebiere/index.html.twig', [
-            'typebieres' => $typebiereRepository->findAll(),
+            'pagination' => $pagination,
+
+
+        // Fin pagination
+
+        // return $this->render('typebiere/index.html.twig', [
+        //     'typebieres' => $typebiereRepository->findAll(),
         ]);
+       
     }
 
     #[Route('/new', name: 'app_typebiere_new', methods: ['GET', 'POST'])]

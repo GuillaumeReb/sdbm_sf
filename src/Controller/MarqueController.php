@@ -11,16 +11,35 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
+
 #[Route('/marque')]
 class MarqueController extends AbstractController
 {
     #[Route('/', name: 'app_marque_index', methods: ['GET'])]
-    public function index(MarqueRepository $marqueRepository): Response
+    public function index(MarqueRepository $marqueRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Debut pagination
+
+        $queryBuilder = $marqueRepository->createQueryBuilder('t');
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1), // Numéro de la page, par défaut 1
+            10 // Limite de lignes par page
+        );
+
+        return $this->render('marque/index.html.twig', [
+            'pagination' => $pagination,
+
+
+        // Fin pagination
+
         // $marques= $marqueRepository->findAll();
         // dd($marques[0] -> getFabricants() -> getNomFabricant());
-        return $this->render('marque/index.html.twig', [
-            'marques' => $marqueRepository->findAll(),
+        // return $this->render('marque/index.html.twig', [
+        //     'marques' => $marqueRepository->findAll(),
         ]);
     }
 

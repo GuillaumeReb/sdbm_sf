@@ -8,10 +8,15 @@
 <div class="col-12">
 <br>
     <h1>Modifier un Fabricant</h1>
-
-    {{ include('fabricant/_form.html.twig', {'button_label': 'Enregistrer'}) }}
-
+<br>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
     <a class="btn btn-primary me-md-2" href="{{ path('app_fabricant_index') }}">Retour</a>
+{{ form_end(form) }}
+
+    {# {{ include('fabricant/_form.html.twig', {'button_label': 'Enregistrer'}) }} #}    
 
     {# {{ include('fabricant/_delete_form.html.twig') }} #}
 

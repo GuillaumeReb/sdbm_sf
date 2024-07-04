@@ -11,15 +11,33 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
+
 #[Route('/pays')]
 class PaysController extends AbstractController
 {
     #[Route('/', name: 'app_pays_index', methods: ['GET'])]
-    public function index(PaysRepository $paysRepository): Response
+    public function index(PaysRepository $paysRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Debut pagination
+
+        $queryBuilder = $paysRepository->createQueryBuilder('t');
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1), // Numéro de la page, par défaut 1
+            10 // Limite de lignes par page
+        );
 
         return $this->render('pays/index.html.twig', [
-            'pays' => $paysRepository->findAll(),
+            'pagination' => $pagination,
+
+
+        // Fin pagination
+
+        // return $this->render('pays/index.html.twig', [
+        //     'pays' => $paysRepository->findAll(),
         ]);
     }
 

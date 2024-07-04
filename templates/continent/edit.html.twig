@@ -9,9 +9,16 @@
 <br>
     <h1>Modifier un Continent</h1>
 
-    {{ include('continent/_form.html.twig', {'button_label': 'Valider'}) }}
+    {# {{ include('continent/_form.html.twig', {'button_label': 'Valider'}) }} #}
 
-     <a class="btn btn-primary me-md-2" href="{{ path('app_continent_index') }}">Retour</a>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>   
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <a class="btn btn-primary me-md-2" href="{{ path('app_continent_index') }}">Retour</a>
+    {{ form_end(form) }}
+
+    
 
     {# {{ include('continent/_delete_form.html.twig') }} #}
 

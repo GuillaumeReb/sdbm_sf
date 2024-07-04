@@ -9,9 +9,14 @@
 <br>
     <h1>Modifier un Type de biere</h1>
 
-    {{ include('typebiere/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    {# {{ include('typebiere/_form.html.twig', {'button_label': 'Enregistrer'}) }} #}
 
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
     <a class="btn btn-primary me-md-2" href="{{ path('app_typebiere_index') }}">Retour</a>
+    {{ form_end(form) }}    
 
     {# {{ include('typebiere/_delete_form.html.twig') }} #}
     </main>

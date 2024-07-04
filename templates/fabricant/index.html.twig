@@ -12,7 +12,6 @@
  <a class="btn btn-primary" href="{{ path('app_fabricant_new') }}">Ajouter</a>
  <br>
 <br>
-<br>
     <table class="table table-striped table-hover table-bordered align-middle">
         <thead class="table-warning">
             <tr>
@@ -22,7 +21,8 @@
             </tr>
         </thead>
         <tbody>
-        {% for fabricant in fabricants %}
+        {# La boucle est a modifier pour la pagination #}
+        {% for fabricant in pagination.items %}
             <tr>
                 <td class="table-light" style="text-align:center">{{ fabricant.id }}</td>
                 <td class="table-light" style="text-align:center">{{ fabricant.nomFabricant }}</td>
@@ -40,6 +40,10 @@
         {% endfor %}
         </tbody>
     </table>
+    {# Sert a la pagination les boutons en dessous du tableau #}
+     <div class="d-flex justify-content-center mt-4">
+                {{ knp_pagination_render(pagination) }}
+            </div>
 </main>
 </section>
 </div>

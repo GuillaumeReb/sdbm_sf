@@ -12,7 +12,7 @@
     <a class="btn btn-primary" href="{{ path('app_pays_new') }}" role="button">Ajouter</a>
 <br>
 <br>
-<br>
+
     <table class="table table-striped table-hover table-bordered align-middle">
         <thead class="table-warning">
             <tr>
@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for pay in pays %}
+        {% for pay in pagination.items %}
             <tr class="table-light">
                 <td style="text-align:center">{{ pay.id }}</td>
                 <td style="text-align:center">{{ pay.nomPays }}</td>
@@ -41,6 +41,9 @@
         {% endfor %}
         </tbody>
     </table>
+     <div class="d-flex justify-content-center mt-4">
+                {{ knp_pagination_render(pagination) }}
+            </div>
 </main>
 </section>
 </div>

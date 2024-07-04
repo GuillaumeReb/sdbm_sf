@@ -11,14 +11,31 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use Knp\Component\Pager\PaginatorInterface;
+
 #[Route('/article')]
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // Debut pagination
+
+        $queryBuilder = $articleRepository->createQueryBuilder('t');
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1), // Numéro de la page, par défaut 1
+            10 // Limite de lignes par page
+        );
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'pagination' => $pagination,
+
+
+        // Fin pagination
+        // return $this->render('article/index.html.twig', [
+        //     'articles' => $articleRepository->findAll(),
         ]);
     }
 
@@ -30,8 +47,11 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // ici coder les exeptions
             $entityManager->persist($article);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'article a été ajouté avec succès.');
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
